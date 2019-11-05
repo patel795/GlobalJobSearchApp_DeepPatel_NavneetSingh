@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">GlobalJobSearchApp_DeepPatel_NavneetSingh</string>
+    <string name="post_job">Post Job</string>
+    <string name="jobs_posted">Jobs Posted</string>
+    <string name="job_applications">Job Applications</string>
+    <string name="log_out">Log Out</string>
+    <string name="activity1">Activity1</string>
 </resources>

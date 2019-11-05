@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/post_job"
+        android:icon="@drawable/ic_post_job"
+        android:title="@string/post_job" />
+    <item
+        android:id="@+id/jobs_posted"
+        android:icon="@drawable/ic_posted_jobs"
+        android:title="@string/jobs_posted" />
+    <item
+        android:id="@+id/job_applications"
+        android:title="@string/job_applications" />
+    <item
+        android:id="@+id/log_out"
+        android:title="@string/log_out" />
+</menu>
