@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="country_list_array">
+        <item>UK</item>
+        <item>USA</item>
+        <item>Australia</item>
+        <item>India</item>
+        <item>China</item>
+        <item>Japan</item>
+        <item>Germany</item>
+        <item></item>
+    </string-array>
+
+    <string-array name="program_list_array">
+        <item>Animation</item>
+        <item>Interaction Design</item>
+        <item>Architecture</item>
+        <item>Computer Science</item>
+        <item>Mechanical</item>
+        <item>Auto Mobile</item>
+        <item></item>
+    </string-array>
+</resources>

@@ -26,6 +26,7 @@ public class Employer_View extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
+       // int viewId = R.layout.activity_student_view__company_search;
 
         if(id == R.id.post_job){
             Toast.makeText(this, "Post Job is clicked", Toast.LENGTH_SHORT).show();
@@ -37,8 +38,9 @@ public class Employer_View extends AppCompatActivity {
             Toast.makeText(this, "Job Applications is clicked", Toast.LENGTH_SHORT).show();
         }
         else if(id == R.id.log_out){
-            Toast.makeText(this, "Log out is clicked", Toast.LENGTH_SHORT).show();
+        //    return View(viewId);
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

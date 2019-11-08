@@ -40,7 +40,7 @@ public class BaseActivity extends AppCompatActivity {
             Toast.makeText(this, "Job Applications is clicked", Toast.LENGTH_SHORT).show();
         }
         else if(id == R.id.log_out){
-            Toast.makeText(this, "Log out is clicked", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, StudentView_CompanySearch.class));
         }
         return super.onOptionsItemSelected(item);
     }
