@@ -9,12 +9,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class BaseActivity extends AppCompatActivity {
+public class Employer_AppliedJobApplications extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
+        setContentView(R.layout.activity_employer__applied_job_applications);
     }
 
     @Override
@@ -27,22 +27,20 @@ public class BaseActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
+        // int viewId = R.layout.activity_student_view__company_search;
 
-        if(id == R.id.post_job){
-            startActivity(new Intent(BaseActivity.this, Employer_View.class));
+        if (id == R.id.post_job) {
+            startActivity(new Intent(Employer_AppliedJobApplications.this, Employer_View.class));
             Toast.makeText(this, "Post Job is clicked", Toast.LENGTH_SHORT).show();
-        }
-        else if(id == R.id.jobs_posted){
-            startActivity(new Intent(BaseActivity.this, Employer_JobsPosted.class));
+        } else if (id == R.id.jobs_posted) {
+            startActivity(new Intent(Employer_AppliedJobApplications.this, Employer_JobsPosted.class));
             Toast.makeText(this, "Job Posted is clicked", Toast.LENGTH_SHORT).show();
-        }
-        else if(id == R.id.job_applications){
-            startActivity(new Intent(BaseActivity.this, Employer_AppliedJobApplications.class));
+        } else if (id == R.id.job_applications) {
+            startActivity(new Intent(Employer_AppliedJobApplications.this, Employer_AppliedJobApplications.class));
             Toast.makeText(this, "Job Applications is clicked", Toast.LENGTH_SHORT).show();
-        }
-        else if(id == R.id.log_out){
+        } else if (id == R.id.log_out) {
             //    return View(viewId);
-            startActivity(new Intent(BaseActivity.this, MainActivity.class));
+            startActivity(new Intent(Employer_AppliedJobApplications.this, MainActivity.class));
             Toast.makeText(this, "LogOut", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
