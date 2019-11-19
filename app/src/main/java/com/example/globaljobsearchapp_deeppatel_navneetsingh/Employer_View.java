@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.app.VoiceInteractor;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -46,8 +47,8 @@ public class Employer_View extends AppCompatActivity {
     Spinner mySpinnerProgram;
     Button btn_post;
 
-    String URL="http://10.16.1.95/GlobalJobSearch/api/DropDownFilter";
-    String JobDescriptionURL="http://10.16.1.95/GlobalJobSearch/SaveJobDescription";
+    String URL="http://192.168.0.25/GlobalJobSearch/api/DropDownFilter";
+    String JobDescriptionURL="http://192.68.0.25/GlobalJobSearch/SaveJobDescription";
     public static ArrayList<String> CountryName = new ArrayList<String>();
     public static ArrayList<String> ProgramName = new ArrayList<String>();
 
@@ -153,8 +154,13 @@ public class Employer_View extends AppCompatActivity {
                     }
 
                     descp.setText("" + CountryName);
-                    mySpinnerCountry.setAdapter(new ArrayAdapter<String>(Employer_View.this, android.R.layout.simple_spinner_dropdown_item, CountryName));
-                    mySpinnerProgram.setAdapter(new ArrayAdapter<String>(Employer_View.this, android.R.layout.simple_spinner_dropdown_item, ProgramName));
+                    ArrayAdapter<String> country_adapter = new ArrayAdapter<String>(Employer_View.this, R.layout.color_spinner_layout, CountryName);
+                    country_adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
+                    mySpinnerCountry.setAdapter(country_adapter);
+
+                    ArrayAdapter<String> program_adapter = new ArrayAdapter<String>(Employer_View.this, R.layout.color_spinner_layout, ProgramName);
+                    program_adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
+                    mySpinnerProgram.setAdapter(program_adapter);
 
                 }catch (JSONException e){
                     e.printStackTrace();
@@ -185,16 +191,21 @@ public class Employer_View extends AppCompatActivity {
        // int viewId = R.layout.activity_student_view__company_search;
 
         if(id == R.id.post_job){
+            startActivity(new Intent(Employer_View.this, Employer_View.class));
             Toast.makeText(this, "Post Job is clicked", Toast.LENGTH_SHORT).show();
         }
         else if(id == R.id.jobs_posted){
+            startActivity(new Intent(Employer_View.this, Employer_JobsPosted.class));
             Toast.makeText(this, "Job Posted is clicked", Toast.LENGTH_SHORT).show();
         }
         else if(id == R.id.job_applications){
+            startActivity(new Intent(Employer_View.this, Employer_AppliedJobApplications.class));
             Toast.makeText(this, "Job Applications is clicked", Toast.LENGTH_SHORT).show();
         }
         else if(id == R.id.log_out){
         //    return View(viewId);
+            startActivity(new Intent(Employer_View.this, MainActivity.class));
+            Toast.makeText(this, "LogOut", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
