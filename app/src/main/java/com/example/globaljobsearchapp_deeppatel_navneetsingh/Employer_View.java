@@ -47,8 +47,8 @@ public class Employer_View extends AppCompatActivity {
     Spinner mySpinnerProgram;
     Button btn_post;
 
-    String URL="http://192.168.0.25/GlobalJobSearch/api/DropDownFilter";
-    String JobDescriptionURL="http://192.68.0.25/GlobalJobSearch/SaveJobDescription";
+    String URL="http://192.168.0.30/GlobalJobSearch/api/DropDownFilter";
+    String JobDescriptionURL="http://192.68.0.30/GlobalJobSearch/SaveJobDescription";
     public static ArrayList<String> CountryName = new ArrayList<String>();
     public static ArrayList<String> ProgramName = new ArrayList<String>();
 
