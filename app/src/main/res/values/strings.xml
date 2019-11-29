@@ -5,4 +5,14 @@
     <string name="job_applications">Job Applications</string>
     <string name="log_out">Log Out</string>
     <string name="activity1">Activity1</string>
+    <string-array name="country_names">
+        <item>Canada</item>
+        <item>United States</item>
+        <item>England</item>
+    </string-array>
+    <string-array name="program_names">
+        <item>Computer Science</item>
+        <item>Mechanical Engineer</item>
+        <item>Electronics</item>
+    </string-array>
 </resources>
