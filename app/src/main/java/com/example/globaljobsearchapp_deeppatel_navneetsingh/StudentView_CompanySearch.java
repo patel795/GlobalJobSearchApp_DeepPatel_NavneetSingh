@@ -38,7 +38,7 @@ public class StudentView_CompanySearch extends AppCompatActivity {
 
     public static String cntry;
     public static String prg;
-    String URL = "http://192.168.0.30/GlobalJobSearch/api/DropDownFilter";
+    String URL = "http://10.16.7.100/GlobalJobSearch/api/DropDownFilter";
     public static ArrayList<String> cntryNameList  = new ArrayList<String>();
     public static ArrayList<String> prgNameList = new ArrayList<String>();
 
@@ -60,7 +60,7 @@ public class StudentView_CompanySearch extends AppCompatActivity {
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StudentView_CompanySearch.this, FilteredCompanyList.class));
+                startActivity(new Intent(StudentView_CompanySearch.this, Student_Filter_Company.class));
             }
         });
 

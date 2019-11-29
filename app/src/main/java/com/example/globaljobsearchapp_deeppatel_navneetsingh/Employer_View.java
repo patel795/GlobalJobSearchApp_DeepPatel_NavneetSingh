@@ -40,28 +40,34 @@ import java.util.Map;
 
 public class Employer_View extends AppCompatActivity {
 
-    public static EditText descp;
     public static String country;
     public static String program;
+    public static String language;
     Spinner mySpinnerCountry;
     Spinner mySpinnerProgram;
+    Spinner mySpinnerLanguage;
     Button btn_post;
+    EditText company_name;
+    EditText job_descp;
 
-    String URL="http://192.168.0.30/GlobalJobSearch/api/DropDownFilter";
-    String JobDescriptionURL="http://192.68.0.30/GlobalJobSearch/SaveJobDescription";
+    String URL="http://192.168.0.25/GlobalJobSearch/api/DropDownFilter";
+    String JobDescriptionURL="http://192.168.0.25/GlobalJobSearch/SaveJobDescription";
     public static ArrayList<String> CountryName = new ArrayList<String>();
     public static ArrayList<String> ProgramName = new ArrayList<String>();
+    public static ArrayList<String> LanguageName = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employer__view);
 
-        descp = findViewById(R.id.edtText_description);
+        job_descp = findViewById(R.id.edtText_description);
 
         mySpinnerCountry = findViewById(R.id.spinner_country);
         mySpinnerProgram = findViewById(R.id.spinner_program);
+        mySpinnerLanguage = findViewById(R.id.spinner_language);
         btn_post = findViewById(R.id.btn_post);
+        company_name = findViewById(R.id.edtText_CompanyName);
 
         FetchDropDownData process = new FetchDropDownData();
         process.execute();
@@ -69,6 +75,7 @@ public class Employer_View extends AppCompatActivity {
         loadSpinnerData(URL);
         countrySpinnerOnClick();
         programSpinnerOnClick();
+        languageSpinnerOnClick();
 
         btn_post.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +101,9 @@ public class Employer_View extends AppCompatActivity {
                         Map<String,String> map = new HashMap<>();
                         map.put("Country",country);
                         map.put("Program", program);
-                        map.put("jobDescription", descp.getText().toString());
+                        map.put("jobDescription", job_descp.getText().toString());
+                        map.put("language",language);
+                        map.put("CompanyName", company_name.getText().toString());
                         return map;
                     }
                 };
@@ -135,6 +144,20 @@ public class Employer_View extends AppCompatActivity {
         });
     }
 
+    public void languageSpinnerOnClick(){
+        mySpinnerLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                language = mySpinnerLanguage.getItemAtPosition(mySpinnerLanguage.getSelectedItemPosition()).toString();
+                Toast.makeText(getApplicationContext(),program,Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // DO Nothing here
+            }
+        });
+    }
+
     public void loadSpinnerData(String url) {
         RequestQueue requestQueue=Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -151,9 +174,11 @@ public class Employer_View extends AppCompatActivity {
                         if(jsonObject1.getString("Program") != "null"){
                             ProgramName.add("" + jsonObject1.getString("Program"));
                         }
+                        if(jsonObject1.getString("Language") != "null"){
+                            LanguageName.add("" + jsonObject1.getString("Language"));
+                        }
                     }
 
-                    descp.setText("" + CountryName);
                     ArrayAdapter<String> country_adapter = new ArrayAdapter<String>(Employer_View.this, R.layout.color_spinner_layout, CountryName);
                     country_adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
                     mySpinnerCountry.setAdapter(country_adapter);
@@ -161,6 +186,10 @@ public class Employer_View extends AppCompatActivity {
                     ArrayAdapter<String> program_adapter = new ArrayAdapter<String>(Employer_View.this, R.layout.color_spinner_layout, ProgramName);
                     program_adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
                     mySpinnerProgram.setAdapter(program_adapter);
+
+                    ArrayAdapter<String> language_adapter = new ArrayAdapter<String>(Employer_View.this, R.layout.color_spinner_layout, LanguageName);
+                    language_adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
+                    mySpinnerLanguage.setAdapter(language_adapter);
 
                 }catch (JSONException e){
                     e.printStackTrace();
