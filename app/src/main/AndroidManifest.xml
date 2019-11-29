@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Employer_AppliedJobApplications"></activity>
+        <activity android:name=".Student_Filter_Company"></activity>
+        <activity android:name=".Employer_AppliedJobApplications" />
         <activity android:name=".Employer_JobsPosted" />
         <activity android:name=".SignUp" />
         <activity android:name=".StudentView_CompanySearch" />

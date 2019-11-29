@@ -1,12 +1,8 @@
 package com.example.globaljobsearchapp_deeppatel_navneetsingh;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,7 +24,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class Employer_JobsPosted extends AppCompatActivity {
+public class Student_Filter_Company extends AppCompatActivity {
 
     ListView list_jobsposted;
     String URL="http://10.16.7.100/GlobalJobSearch/JobDescriptionData";
@@ -36,16 +32,16 @@ public class Employer_JobsPosted extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_employer__jobs_posted);
+        setContentView(R.layout.activity_student__filter__company);
 
-        list_jobsposted = findViewById(R.id.listview_jobsposted);
+        list_jobsposted = findViewById(R.id.company_filter_list);
         loadCompanyName(URL);
 
         list_jobsposted.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String clickedItem=(String) list_jobsposted.getItemAtPosition(position);
-                Toast.makeText(Employer_JobsPosted.this,clickedItem,Toast.LENGTH_LONG).show();
+                Toast.makeText(Student_Filter_Company.this,clickedItem,Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -63,7 +59,7 @@ public class Employer_JobsPosted extends AppCompatActivity {
                         companyName.add("" + jsonObject1.getString("CompanyName"));
                     }
 
-                    ArrayAdapter<String> companyListAdapter = new ArrayAdapter<String>(Employer_JobsPosted.this,android.R.layout.simple_list_item_1, companyName);
+                    ArrayAdapter<String> companyListAdapter = new ArrayAdapter<String>(Student_Filter_Company.this,android.R.layout.simple_list_item_1, companyName);
                     list_jobsposted.setAdapter(companyListAdapter);
 
                 }catch (JSONException e){
@@ -80,34 +76,5 @@ public class Employer_JobsPosted extends AppCompatActivity {
         RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         stringRequest.setRetryPolicy(policy);
         requestQueue.add(stringRequest);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.employermenu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        int id = item.getItemId();
-        // int viewId = R.layout.activity_student_view__company_search;
-
-        if (id == R.id.post_job) {
-            startActivity(new Intent(Employer_JobsPosted.this, Employer_View.class));
-            Toast.makeText(this, "Post Job is clicked", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.jobs_posted) {
-            startActivity(new Intent(Employer_JobsPosted.this, Employer_JobsPosted.class));
-            Toast.makeText(this, "Job Posted is clicked", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.job_applications) {
-            startActivity(new Intent(Employer_JobsPosted.this, Employer_AppliedJobApplications.class));
-            Toast.makeText(this, "Job Applications is clicked", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.log_out) {
-            //    return View(viewId);
-            startActivity(new Intent(Employer_JobsPosted.this, MainActivity.class));
-            Toast.makeText(this, "LogOut", Toast.LENGTH_SHORT).show();
-        }
-        return super.onOptionsItemSelected(item);
     }
 }
