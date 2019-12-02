@@ -3,6 +3,7 @@ package com.example.globaljobsearchapp_deeppatel_navneetsingh;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 public class Employer_JobsPosted extends AppCompatActivity {
 
     ListView list_jobsposted;
-    String URL="http://10.16.7.100/GlobalJobSearch/JobDescriptionData";
+    String URL="http://192.168.0.25/GlobalJobSearch/JobDescriptionData";
     public static ArrayList<String> companyName = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class Employer_JobsPosted extends AppCompatActivity {
         setContentView(R.layout.activity_employer__jobs_posted);
 
         list_jobsposted = findViewById(R.id.listview_jobsposted);
+        companyName.clear();
         loadCompanyName(URL);
 
         list_jobsposted.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -46,6 +48,7 @@ public class Employer_JobsPosted extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String clickedItem=(String) list_jobsposted.getItemAtPosition(position);
                 Toast.makeText(Employer_JobsPosted.this,clickedItem,Toast.LENGTH_LONG).show();
+                startActivity(new Intent(Employer_JobsPosted.this, Employers_editJobs.class));
             }
         });
     }
