@@ -3,6 +3,7 @@ package com.example.globaljobsearchapp_deeppatel_navneetsingh;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.VoiceInteractor;
 import android.content.Context;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -35,6 +37,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,12 +52,14 @@ public class Employer_View extends AppCompatActivity {
     Button btn_post;
     EditText company_name;
     EditText job_descp;
+    Button btn_datePick;
 
     String URL="http://192.168.0.25/GlobalJobSearch/api/DropDownFilter";
     String JobDescriptionURL="http://192.168.0.25/GlobalJobSearch/SaveJobDescription";
     public static ArrayList<String> CountryName = new ArrayList<String>();
     public static ArrayList<String> ProgramName = new ArrayList<String>();
     public static ArrayList<String> LanguageName = new ArrayList<String>();
+    private int mYear, mMonth, mDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +73,7 @@ public class Employer_View extends AppCompatActivity {
         mySpinnerLanguage = findViewById(R.id.spinner_language);
         btn_post = findViewById(R.id.btn_post);
         company_name = findViewById(R.id.edtText_CompanyName);
+        btn_datePick = findViewById(R.id.btn_datePick);
 
         FetchDropDownData process = new FetchDropDownData();
         process.execute();
@@ -76,6 +82,31 @@ public class Employer_View extends AppCompatActivity {
         countrySpinnerOnClick();
         programSpinnerOnClick();
         languageSpinnerOnClick();
+
+        btn_datePick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get Current Date
+                final Calendar c = Calendar.getInstance();
+                mYear = c.get(Calendar.YEAR);
+                mMonth = c.get(Calendar.MONTH);
+                mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(Employer_View.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+
+                                btn_datePick.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                            }
+                        }, mYear, mMonth, mMonth);
+                datePickerDialog.show();
+            }
+        });
 
         btn_post.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +145,6 @@ public class Employer_View extends AppCompatActivity {
             }
         });
     }
-
 
     public void countrySpinnerOnClick(){
         mySpinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
