@@ -34,6 +34,7 @@ public class Employer_JobsPosted extends AppCompatActivity {
     ListView list_jobsposted;
     String URL="http://192.168.0.25/GlobalJobSearch/JobDescriptionData";
     public static ArrayList<String> companyName = new ArrayList<>();
+    public static ArrayList<String> idList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +48,10 @@ public class Employer_JobsPosted extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String clickedItem=(String) list_jobsposted.getItemAtPosition(position);
-                Toast.makeText(Employer_JobsPosted.this,clickedItem,Toast.LENGTH_LONG).show();
-                startActivity(new Intent(Employer_JobsPosted.this, Employers_editJobs.class));
+                Toast.makeText(Employer_JobsPosted.this, idList.get(position),Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Employer_JobsPosted.this, Employers_editJobs.class);
+                intent.putExtra("ID", idList.get(position));
+                startActivity(intent);
             }
         });
     }
@@ -64,6 +67,7 @@ public class Employer_JobsPosted extends AppCompatActivity {
                     for(int i=0;i<JA.length();i++){
                         JSONObject jsonObject1=JA.getJSONObject(i);
                         companyName.add("" + jsonObject1.getString("CompanyName"));
+                        idList.add("" + jsonObject1.getString("ID"));
                     }
 
                     ArrayAdapter<String> companyListAdapter = new ArrayAdapter<String>(Employer_JobsPosted.this,android.R.layout.simple_list_item_1, companyName);

@@ -10,49 +10,35 @@
 
     <Spinner
         android:id="@+id/spinner_country"
-        android:layout_width="396dp"
-        android:layout_height="27dp"
+        android:layout_width="316dp"
+        android:layout_height="53dp"
         android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.073" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.177" />
 
     <Spinner
         android:id="@+id/spinner_program"
-        android:layout_width="405dp"
-        android:layout_height="40dp"
+        android:layout_width="316dp"
+        android:layout_height="53dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_country"
-        app:layout_constraintVertical_bias="0.037"
-        tools:visibility="visible" />
-
-    <EditText
-        android:id="@+id/edtText_description"
-        android:layout_width="402dp"
-        android:layout_height="216dp"
-        android:ems="10"
-        android:hint="Add Job Description"
-        android:inputType="textPersonName|textImeMultiLine"
-        android:textAlignment="textStart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.777"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.802" />
+        app:layout_constraintVertical_bias="0.277"
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/btn_post"
         android:layout_width="400dp"
         android:layout_height="63dp"
         android:text="Post Job"
+        android:stateListAnimator="@anim/button_state_list_animator"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.818"
@@ -62,38 +48,52 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="398dp"
-        android:layout_height="143dp"
+        android:layout_width="400dp"
+        android:layout_height="105dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/spinner_program"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.003"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/post_job_logo" />
 
     <Spinner
         android:id="@+id/spinner_language"
-        android:layout_width="400dp"
-        android:layout_height="41dp"
+        android:layout_width="316dp"
+        android:layout_height="53dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_program"
-        app:layout_constraintVertical_bias="0.054" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.384" />
 
     <EditText
         android:id="@+id/edtText_CompanyName"
-        android:layout_width="399dp"
-        android:layout_height="49dp"
+        android:layout_width="316dp"
+        android:layout_height="53dp"
         android:ems="10"
         android:hint="Enter Company Name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtText_description"
+        android:layout_width="316dp"
+        android:layout_height="210dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Job Description"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.518" />
+        app:layout_constraintVertical_bias="0.779" />
 </androidx.constraintlayout.widget.ConstraintLayout>
