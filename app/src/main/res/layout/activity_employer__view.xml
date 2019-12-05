@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FDFDFC"
+    android:background="@android:color/background_light"
     android:gravity="center"
     tools:context=".Employer_View">
 
@@ -35,16 +35,18 @@
 
     <Button
         android:id="@+id/btn_post"
-        android:layout_width="400dp"
+        android:layout_width="316dp"
         android:layout_height="63dp"
+        android:background="@drawable/cw_button_shadow"
         android:text="Post Job"
-        android:stateListAnimator="@anim/button_state_list_animator"
+        android:textColor="@android:color/background_light"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.818"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.98" />
+        app:layout_constraintVertical_bias="0.955" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -84,16 +86,29 @@
 
     <EditText
         android:id="@+id/edtText_description"
-        android:layout_width="316dp"
-        android:layout_height="210dp"
+        android:layout_width="312dp"
+        android:layout_height="131dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Job Description"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.678" />
+
+    <Button
+        android:id="@+id/btn_datePick"
+        android:layout_width="316dp"
+        android:layout_height="wrap_content"
+        android:text="Last Date"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.779" />
+        app:layout_constraintVertical_bias="0.827" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
