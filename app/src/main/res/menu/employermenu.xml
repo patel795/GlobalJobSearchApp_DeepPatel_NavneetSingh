@@ -11,7 +11,7 @@
         android:icon="@drawable/ic_posted_jobs"
         android:title="@string/jobs_posted" />
     <item
-        android:id="@+id/job_applications"
+        android:id="@+id/listivew_job_applications"
         android:title="@string/job_applications" />
     <item
         android:id="@+id/log_out"
