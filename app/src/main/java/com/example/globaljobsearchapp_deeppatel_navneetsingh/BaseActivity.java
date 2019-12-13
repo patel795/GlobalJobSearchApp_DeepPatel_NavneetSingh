@@ -36,7 +36,7 @@ public class BaseActivity extends AppCompatActivity {
             startActivity(new Intent(BaseActivity.this, Employer_JobsPosted.class));
             Toast.makeText(this, "Job Posted is clicked", Toast.LENGTH_SHORT).show();
         }
-        else if(id == R.id.job_applications){
+        else if(id == R.id.listivew_job_applications){
             startActivity(new Intent(BaseActivity.this, Employer_AppliedJobApplications.class));
             Toast.makeText(this, "Job Applications is clicked", Toast.LENGTH_SHORT).show();
         }

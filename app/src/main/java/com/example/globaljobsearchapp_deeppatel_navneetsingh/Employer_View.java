@@ -4,12 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
-import android.app.ProgressDialog;
-import android.app.VoiceInteractor;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,11 +23,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.apache.http.params.HttpParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -59,7 +53,7 @@ public class Employer_View extends AppCompatActivity {
     public static ArrayList<String> CountryName = new ArrayList<String>();
     public static ArrayList<String> ProgramName = new ArrayList<String>();
     public static ArrayList<String> LanguageName = new ArrayList<String>();
-    private int mYear, mMonth, mDay;
+    public int selectedYear, selectedMonthOfYear, selectedDayOfMonth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,9 +82,9 @@ public class Employer_View extends AppCompatActivity {
             public void onClick(View v) {
                 // Get Current Date
                 final Calendar c = Calendar.getInstance();
-                mYear = c.get(Calendar.YEAR);
-                mMonth = c.get(Calendar.MONTH);
-                mDay = c.get(Calendar.DAY_OF_MONTH);
+                int mYear = c.get(Calendar.YEAR);
+                int mMonth = c.get(Calendar.MONTH);
+                int mDay = c.get(Calendar.DAY_OF_MONTH);
 
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(Employer_View.this,
@@ -100,6 +94,9 @@ public class Employer_View extends AppCompatActivity {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
 
+                                selectedYear = year;
+                                selectedMonthOfYear = monthOfYear;
+                                selectedDayOfMonth = dayOfMonth;
                                 btn_datePick.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
 
                             }
@@ -111,8 +108,6 @@ public class Employer_View extends AppCompatActivity {
         btn_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),country,Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(),program,Toast.LENGTH_SHORT).show();
 
                 RequestQueue requestQueue=Volley.newRequestQueue(getApplicationContext());
                 StringRequest stringRequest=new StringRequest(Request.Method.POST, JobDescriptionURL, new Response.Listener<String>() {
@@ -135,6 +130,9 @@ public class Employer_View extends AppCompatActivity {
                         map.put("jobDescription", job_descp.getText().toString());
                         map.put("language",language);
                         map.put("CompanyName", company_name.getText().toString());
+                        map.put("year", String.valueOf(selectedYear));
+                        map.put("month", String.valueOf(selectedMonthOfYear + 1));
+                        map.put("date", String.valueOf(selectedDayOfMonth));
                         return map;
                     }
                 };
@@ -142,6 +140,7 @@ public class Employer_View extends AppCompatActivity {
                 RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
                 stringRequest.setRetryPolicy(policy);
                 requestQueue.add(stringRequest);
+                Toast.makeText(Employer_View.this, "Job Posted",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -151,7 +150,6 @@ public class Employer_View extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 country = mySpinnerCountry.getItemAtPosition(mySpinnerCountry.getSelectedItemPosition()).toString();
-                Toast.makeText(getApplicationContext(),country,Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -165,7 +163,6 @@ public class Employer_View extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 program = mySpinnerProgram.getItemAtPosition(mySpinnerProgram.getSelectedItemPosition()).toString();
-                Toast.makeText(getApplicationContext(),program,Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -179,7 +176,6 @@ public class Employer_View extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 language = mySpinnerLanguage.getItemAtPosition(mySpinnerLanguage.getSelectedItemPosition()).toString();
-                Toast.makeText(getApplicationContext(),program,Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -251,20 +247,16 @@ public class Employer_View extends AppCompatActivity {
 
         if(id == R.id.post_job){
             startActivity(new Intent(Employer_View.this, Employer_View.class));
-            Toast.makeText(this, "Post Job is clicked", Toast.LENGTH_SHORT).show();
         }
         else if(id == R.id.jobs_posted){
             startActivity(new Intent(Employer_View.this, Employer_JobsPosted.class));
-            Toast.makeText(this, "Job Posted is clicked", Toast.LENGTH_SHORT).show();
         }
-        else if(id == R.id.job_applications){
+        else if(id == R.id.listivew_job_applications){
             startActivity(new Intent(Employer_View.this, Employer_AppliedJobApplications.class));
-            Toast.makeText(this, "Job Applications is clicked", Toast.LENGTH_SHORT).show();
         }
         else if(id == R.id.log_out){
         //    return View(viewId);
             startActivity(new Intent(Employer_View.this, MainActivity.class));
-            Toast.makeText(this, "LogOut", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }

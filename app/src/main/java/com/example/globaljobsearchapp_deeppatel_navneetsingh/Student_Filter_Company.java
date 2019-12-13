@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class Student_Filter_Company extends AppCompatActivity {
 
     ListView list_jobsposted;
-    String URL="http://10.16.7.100/GlobalJobSearch/JobDescriptionData";
+    String URL="http://192.168.0.25/GlobalJobSearch/JobDescriptionData";
     public static ArrayList<String> companyName = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {

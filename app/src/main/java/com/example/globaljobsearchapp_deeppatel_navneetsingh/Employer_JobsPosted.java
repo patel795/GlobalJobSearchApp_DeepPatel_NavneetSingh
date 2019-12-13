@@ -3,7 +3,6 @@ package com.example.globaljobsearchapp_deeppatel_navneetsingh;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -66,8 +65,10 @@ public class Employer_JobsPosted extends AppCompatActivity {
                     JSONArray JA = new JSONArray(response);
                     for(int i=0;i<JA.length();i++){
                         JSONObject jsonObject1=JA.getJSONObject(i);
-                        companyName.add("" + jsonObject1.getString("CompanyName"));
-                        idList.add("" + jsonObject1.getString("ID"));
+                        if(jsonObject1.getString("CompanyName") != "No Match"){
+                            companyName.add("" + jsonObject1.getString("CompanyName"));
+                            idList.add("" + jsonObject1.getString("ID"));
+                        }
                     }
 
                     ArrayAdapter<String> companyListAdapter = new ArrayAdapter<String>(Employer_JobsPosted.this,android.R.layout.simple_list_item_1, companyName);
@@ -107,7 +108,7 @@ public class Employer_JobsPosted extends AppCompatActivity {
         } else if (id == R.id.jobs_posted) {
             startActivity(new Intent(Employer_JobsPosted.this, Employer_JobsPosted.class));
             Toast.makeText(this, "Job Posted is clicked", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.job_applications) {
+        } else if (id == R.id.listivew_job_applications) {
             startActivity(new Intent(Employer_JobsPosted.this, Employer_AppliedJobApplications.class));
             Toast.makeText(this, "Job Applications is clicked", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.log_out) {
